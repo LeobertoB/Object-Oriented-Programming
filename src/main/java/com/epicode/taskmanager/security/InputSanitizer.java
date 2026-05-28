@@ -16,13 +16,13 @@ public final class InputSanitizer {
 
     public static String sanitizeText(String value, String fieldName, int maxLength) {
         Objects.requireNonNull(fieldName, "fieldName cannot be null");
-        TextValidationContext context = new TextValidationContext(value, fieldName, maxLength);
+        final TextValidationContext context = new TextValidationContext(value, fieldName, maxLength);
         validationChain().validate(context);
         return context.getValue();
     }
 
     private static TextValidationStep validationChain() {
-        TextValidationStep required = new RequiredTextValidationStep();
+        final TextValidationStep required = new RequiredTextValidationStep();
         required
                 .linkWith(new ControlCharacterSanitizationStep())
                 .linkWith(new TrimTextValidationStep())

@@ -75,17 +75,17 @@ tasks.xml
 
 ```text
 com.epicode.taskmanager
-├── cli          command-line menu
-├── domain       task model and composite structure
-├── event        observer events
-├── factory      object creation
-├── iterator     custom tree iterator
 ├── logging      logging setup
-├── persistence  XML save/load
 ├── security     sanitization and exception shielding
-├── service      application use cases
-└── strategy     task sorting strategies
+└── tasks        complete task-management feature
+    ├── creation     object creation and id generation
+    ├── events       observer events
+    ├── persistence  XML save/load for tasks
+    ├── sorting      task sorting strategies
+    └── traversal    custom tree iterator
 ```
+
+The project uses feature-oriented packaging for the task-management feature. Security and logging stay outside it because they are cross-cutting concerns.
 
 ## Design Patterns Used
 
@@ -122,7 +122,7 @@ Implemented by:
 
 Reason:
 
-The app can traverse a nested task tree without exposing the internal list structure. This is used by services and reports.
+The app can traverse a nested task tree without exposing the internal list structure. The iterator uses a stack of pending task components, so it is clear that it performs depth-first traversal. This is used by services and reports.
 
 ### Exception Shielding
 

@@ -13,10 +13,10 @@ public final class AnnotatedInputValidator {
 
     public static Map<String, String> sanitize(Object input) {
         Objects.requireNonNull(input, "input cannot be null");
-        Map<String, String> values = new HashMap<>();
+        final Map<String, String> values = new HashMap<>();
 
         for (Field field : input.getClass().getDeclaredFields()) {
-            SanitizedText annotation = field.getAnnotation(SanitizedText.class);
+            final SanitizedText annotation = field.getAnnotation(SanitizedText.class);
             if (annotation != null) {
                 values.put(field.getName(), sanitizeField(input, field, annotation));
             }
@@ -28,8 +28,8 @@ public final class AnnotatedInputValidator {
     private static String sanitizeField(Object input, Field field, SanitizedText annotation) {
         try {
             field.setAccessible(true);
-            Object rawValue = field.get(input);
-            String fieldName = annotation.fieldName().isBlank() ? field.getName() : annotation.fieldName();
+            final Object rawValue = field.get(input);
+            final String fieldName = annotation.fieldName().isBlank() ? field.getName() : annotation.fieldName();
             return InputSanitizer.sanitizeText((String) rawValue, fieldName, annotation.maxLength());
         } catch (IllegalAccessException exception) {
             throw new IllegalStateException("Annotated input could not be read.");

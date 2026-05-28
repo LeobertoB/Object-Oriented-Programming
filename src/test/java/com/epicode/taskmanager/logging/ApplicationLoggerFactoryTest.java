@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class ApplicationLoggerFactoryTest {
     @Test
     void createsLoggerForRequestedClass() {
-        Logger logger = ApplicationLoggerFactory.getLogger(ApplicationLoggerFactoryTest.class);
+        final Logger logger = ApplicationLoggerFactory.getLogger(ApplicationLoggerFactoryTest.class);
 
         assertNotNull(logger);
         assertEquals(ApplicationLoggerFactoryTest.class.getName(), logger.getName());

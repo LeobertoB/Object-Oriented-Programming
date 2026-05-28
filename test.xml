@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<taskGroup description="Default task project" id="group-1" title="Main Project">
+    <taskGroup description="Java" id="group-2" title="Java"/>
+    <task completed="true" description="Do test" dueDate="2026-07-25" id="task-3" priority="HIGH" title="Do test"/>
+</taskGroup>

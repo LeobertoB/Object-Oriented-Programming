@@ -21,7 +21,7 @@ class ExceptionShieldTest {
 
     @Test
     void returnsSuccessResultWhenOperationSucceeds() {
-        OperationResult<String> result = shield.execute(() -> "created");
+        final OperationResult<String> result = shield.execute(() -> "created");
 
         assertTrue(result.isSuccess());
         assertEquals("created", result.getValue().orElseThrow());
@@ -30,7 +30,7 @@ class ExceptionShieldTest {
 
     @Test
     void returnsValidationMessageForExpectedApplicationException() {
-        OperationResult<String> result = shield.execute(() -> {
+        final OperationResult<String> result = shield.execute(() -> {
             throw new ValidationException("title cannot be blank");
         });
 
@@ -41,7 +41,7 @@ class ExceptionShieldTest {
 
     @Test
     void hidesUnexpectedExceptionDetailsFromUserFacingResult() {
-        OperationResult<String> result = shield.execute(() -> {
+        final OperationResult<String> result = shield.execute(() -> {
             throw new IllegalStateException("database path /private/secret failed");
         });
 
@@ -56,7 +56,7 @@ class ExceptionShieldTest {
             throw new IllegalStateException("secret-token-123");
         });
 
-        LogRecord record = logHandler.records().get(0);
+        final LogRecord record = logHandler.records().get(0);
         assertEquals(Level.WARNING, record.getLevel());
         assertEquals("Unexpected application error: {0}", record.getMessage());
         assertEquals("IllegalStateException", record.getParameters()[0]);
@@ -64,7 +64,7 @@ class ExceptionShieldTest {
     }
 
     private Logger testLogger() {
-        Logger testLogger = Logger.getLogger(ExceptionShieldTest.class.getName() + "." + System.nanoTime());
+        final Logger testLogger = Logger.getLogger(ExceptionShieldTest.class.getName() + "." + System.nanoTime());
         testLogger.setUseParentHandlers(false);
         testLogger.addHandler(logHandler);
         return testLogger;

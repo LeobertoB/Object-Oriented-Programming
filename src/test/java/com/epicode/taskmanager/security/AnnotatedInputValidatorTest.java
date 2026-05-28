@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class AnnotatedInputValidatorTest {
     @Test
     void sanitizesAnnotatedFieldsUsingReflection() {
-        Map<String, String> values = AnnotatedInputValidator.sanitize(new Input("  Safe\u0000 title  "));
+        final Map<String, String> values = AnnotatedInputValidator.sanitize(new Input("  Safe\u0000 title  "));
 
         assertEquals("Safe title", values.get("title"));
     }

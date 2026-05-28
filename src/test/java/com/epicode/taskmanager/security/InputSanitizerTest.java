@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class InputSanitizerTest {
     @Test
     void trimsTextAndRemovesUnsafeControlCharacters() {
-        String sanitized = InputSanitizer.sanitizeText("  Valid\u0000 title\u0007  ", "title", 80);
+        final String sanitized = InputSanitizer.sanitizeText("  Valid\u0000 title\u0007  ", "title", 80);
 
         assertEquals("Valid title", sanitized);
     }

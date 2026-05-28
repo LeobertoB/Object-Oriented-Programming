@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<taskGroup description="Default task project" id="group-1" title="Main Project">
+    <taskGroup description="Final project" id="group-2" title="University">
+        <task completed="true" description="Add diagrams and explanations" dueDate="2026-05-20" id="task-3" priority="HIGH" title="Write README"/>
+    </taskGroup>
+</taskGroup>
